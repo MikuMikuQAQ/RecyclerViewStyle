@@ -1,5 +1,7 @@
 先看效果图：
+
 ![1661786885169](https://www.rainblog.cn/upload/2022/08/1661786885169.gif)
+
 顶部由横向滚动的列表实现，中间有一个banner，主要布局是一个瀑布流StaggeredGridLayoutManager实现的一个列表，最后有一个footer来显示加载页。
 
 如果用NestedScrollView来实现以上效果，就会出现瀑布流RecyclerView无限加载数据导致ANR，手动控制数据加载也可以，但会导致刷新列表时卡顿，这个卡顿会在数据加载越多而明显，因为瀑布流的Adapter不会再回收Item了，所以用户体验非常不好；这个时候我们就可以通过单RecyclerView+多ViewHolder来实现，由Adapter自己进行ViewHolder的回收。
